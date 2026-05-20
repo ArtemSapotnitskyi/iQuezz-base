@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { QuizData } from "@/data/quizzes/quiz";
 import { categoryThemes } from "@/features/quiz_category/data/categoryThemes";
 
@@ -81,11 +82,12 @@ export const QuizWorkspace = ({ quizzes }: QuizWorkspaceProps) => {
               >
                 Cancel
               </button>
-              <button
-                className={`px-6 py-3 rounded-lg text-white font-medium w-full ${currentTheme.iconBgClass} hover:opacity-90 transition-opacity`}
+              <Link
+                href={`/quiz/${selectedQuiz.categorySlug}/${selectedQuiz.id}`}
+                className={`flex items-center justify-center px-6 py-3 rounded-lg text-white font-medium w-full ${currentTheme.iconBgClass} hover:opacity-90 transition-opacity`}
               >
                 Start Quiz
-              </button>
+              </Link>
             </div>
           </div>
         </div>

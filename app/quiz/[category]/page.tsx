@@ -6,10 +6,8 @@ import { QuizWorkspace } from "@/features/quiz_category/components/QuizWorkspace
 export default async function QuizCategoryPage({
   params,
 }: {
-  // 1. Обертаємо тип у Promise
   params: Promise<{ category: string }>;
 }) {
-  // 2. Додаємо await, щоб дочекатися параметрів
   const { category } = await params;
 
   let filteredQuizzes: QuizData[] = [];

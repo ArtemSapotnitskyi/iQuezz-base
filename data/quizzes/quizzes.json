@@ -4,69 +4,341 @@
     "categorySlug": "science",
     "title": "Fundamentals of Physics",
     "description": "Test your knowledge of the basic laws of physics, mechanics, and thermodynamics.",
-    "questionCount": 10
+    "questionCount": 2,
+    "questions": [
+      {
+        "id": "sci-1-q1",
+        "text": "What is the standard unit of force in the International System of Units (SI)?",
+        "points": 100,
+        "difficulty": "Easy",
+        "answers": [
+          { "id": "a1", "text": "Joule", "isCorrect": false },
+          { "id": "a2", "text": "Newton", "isCorrect": true },
+          { "id": "a3", "text": "Pascal", "isCorrect": false },
+          { "id": "a4", "text": "Watt", "isCorrect": false }
+        ]
+      },
+      {
+        "id": "sci-1-q2",
+        "text": "Which law of thermodynamics states that energy cannot be created or destroyed?",
+        "points": 200,
+        "difficulty": "Medium",
+        "answers": [
+          { "id": "a1", "text": "First Law", "isCorrect": true },
+          { "id": "a2", "text": "Second Law", "isCorrect": false },
+          { "id": "a3", "text": "Third Law", "isCorrect": false },
+          { "id": "a4", "text": "Zeroth Law", "isCorrect": false }
+        ]
+      }
+    ]
   },
   {
     "id": "sci-2",
     "categorySlug": "science",
     "title": "Space and the Universe",
     "description": "What do you know about black holes, galaxies, the solar system, and the Big Bang?",
-    "questionCount": 15
+    "questionCount": 2,
+    "questions": [
+      {
+        "id": "sci-2-q1",
+        "text": "Which planet is closest to the Sun?",
+        "points": 100,
+        "difficulty": "Easy",
+        "answers": [
+          { "id": "a1", "text": "Venus", "isCorrect": false },
+          { "id": "a2", "text": "Mars", "isCorrect": false },
+          { "id": "a3", "text": "Mercury", "isCorrect": true },
+          { "id": "a4", "text": "Earth", "isCorrect": false }
+        ]
+      },
+      {
+        "id": "sci-2-q2",
+        "text": "What is the name of our galaxy?",
+        "points": 100,
+        "difficulty": "Easy",
+        "answers": [
+          { "id": "a1", "text": "Andromeda", "isCorrect": false },
+          { "id": "a2", "text": "Milky Way", "isCorrect": true },
+          { "id": "a3", "text": "Triangulum", "isCorrect": false },
+          { "id": "a4", "text": "Sombrero", "isCorrect": false }
+        ]
+      }
+    ]
   },
   {
     "id": "sci-3",
     "categorySlug": "science",
     "title": "Quantum Mechanics for Beginners",
     "description": "Schrödinger's cat, entanglement, and basic concepts of the microworld.",
-    "questionCount": 8
+    "questionCount": 2,
+    "questions": [
+      {
+        "id": "sci-3-q1",
+        "text": "What famous thought experiment involves a cat that is simultaneously alive and dead?",
+        "points": 200,
+        "difficulty": "Medium",
+        "answers": [
+          { "id": "a1", "text": "Einstein's Cat", "isCorrect": false },
+          { "id": "a2", "text": "Bohr's Cat", "isCorrect": false },
+          { "id": "a3", "text": "Heisenberg's Cat", "isCorrect": false },
+          { "id": "a4", "text": "Schrödinger's Cat", "isCorrect": true }
+        ]
+      },
+      {
+        "id": "sci-3-q2",
+        "text": "What principle states that you cannot simultaneously know both the exact position and momentum of a particle?",
+        "points": 300,
+        "difficulty": "Hard",
+        "answers": [
+          {
+            "id": "a1",
+            "text": "Pauli Exclusion Principle",
+            "isCorrect": false
+          },
+          {
+            "id": "a2",
+            "text": "Heisenberg Uncertainty Principle",
+            "isCorrect": true
+          },
+          { "id": "a3", "text": "Fermat's Principle", "isCorrect": false },
+          { "id": "a4", "text": "Huygens Principle", "isCorrect": false }
+        ]
+      }
+    ]
   },
   {
     "id": "math-1",
     "categorySlug": "math",
     "title": "Algebra: Level 1",
     "description": "Basic equations, fractions, percentages, and simple mathematical operations.",
-    "questionCount": 12
+    "questionCount": 2,
+    "questions": [
+      {
+        "id": "math-1-q1",
+        "text": "Solve for x: 2x + 5 = 15",
+        "points": 100,
+        "difficulty": "Easy",
+        "answers": [
+          { "id": "a1", "text": "x = 5", "isCorrect": true },
+          { "id": "a2", "text": "x = 10", "isCorrect": false },
+          { "id": "a3", "text": "x = 4", "isCorrect": false },
+          { "id": "a4", "text": "x = 6", "isCorrect": false }
+        ]
+      },
+      {
+        "id": "math-1-q2",
+        "text": "What is 20% of 150?",
+        "points": 100,
+        "difficulty": "Easy",
+        "answers": [
+          { "id": "a1", "text": "25", "isCorrect": false },
+          { "id": "a2", "text": "30", "isCorrect": true },
+          { "id": "a3", "text": "35", "isCorrect": false },
+          { "id": "a4", "text": "20", "isCorrect": false }
+        ]
+      }
+    ]
   },
   {
     "id": "math-2",
     "categorySlug": "math",
     "title": "Higher Mathematics",
     "description": "Integrals, derivatives, and matrices. Only for true experts.",
-    "questionCount": 20
+    "questionCount": 2,
+    "questions": [
+      {
+        "id": "math-2-q1",
+        "text": "What is the derivative of x^2?",
+        "points": 200,
+        "difficulty": "Medium",
+        "answers": [
+          { "id": "a1", "text": "x", "isCorrect": false },
+          { "id": "a2", "text": "2x", "isCorrect": true },
+          { "id": "a3", "text": "2x^2", "isCorrect": false },
+          { "id": "a4", "text": "x^3 / 3", "isCorrect": false }
+        ]
+      },
+      {
+        "id": "math-2-q2",
+        "text": "Which of these is the correct formula for the quadratic equation roots?",
+        "points": 300,
+        "difficulty": "Hard",
+        "answers": [
+          { "id": "a1", "text": "(-b ± √(b^2 - 4ac)) / 2a", "isCorrect": true },
+          {
+            "id": "a2",
+            "text": "(-b ± √(b^2 + 4ac)) / 2a",
+            "isCorrect": false
+          },
+          { "id": "a3", "text": "(b ± √(b^2 - 4ac)) / 2a", "isCorrect": false },
+          { "id": "a4", "text": "(-b ± √(b - 4ac)) / 2a", "isCorrect": false }
+        ]
+      }
+    ]
   },
   {
     "id": "math-3",
     "categorySlug": "math",
     "title": "Logic and Probability",
     "description": "Problems in logic, combinatorics, and probability theory.",
-    "questionCount": 10
+    "questionCount": 2,
+    "questions": [
+      {
+        "id": "math-3-q1",
+        "text": "If you flip a fair coin two times, what is the probability of getting two heads?",
+        "points": 200,
+        "difficulty": "Medium",
+        "answers": [
+          { "id": "a1", "text": "50%", "isCorrect": false },
+          { "id": "a2", "text": "25%", "isCorrect": true },
+          { "id": "a3", "text": "75%", "isCorrect": false },
+          { "id": "a4", "text": "33.3%", "isCorrect": false }
+        ]
+      },
+      {
+        "id": "math-3-q2",
+        "text": "A standard deck has 52 cards. What is the probability of drawing an Ace?",
+        "points": 200,
+        "difficulty": "Medium",
+        "answers": [
+          { "id": "a1", "text": "1/13", "isCorrect": true },
+          { "id": "a2", "text": "1/52", "isCorrect": false },
+          { "id": "a3", "text": "1/4", "isCorrect": false },
+          { "id": "a4", "text": "4/13", "isCorrect": false }
+        ]
+      }
+    ]
   },
   {
     "id": "chem-1",
     "categorySlug": "chemistry",
     "title": "The Periodic Table",
     "description": "How well do you navigate chemical elements and their properties?",
-    "questionCount": 15
+    "questionCount": 2,
+    "questions": [
+      {
+        "id": "chem-1-q1",
+        "text": "What is the chemical symbol for Gold?",
+        "points": 100,
+        "difficulty": "Easy",
+        "answers": [
+          { "id": "a1", "text": "Go", "isCorrect": false },
+          { "id": "a2", "text": "Ag", "isCorrect": false },
+          { "id": "a3", "text": "Au", "isCorrect": true },
+          { "id": "a4", "text": "Gd", "isCorrect": false }
+        ]
+      },
+      {
+        "id": "chem-1-q2",
+        "text": "Which element has the atomic number 1?",
+        "points": 100,
+        "difficulty": "Easy",
+        "answers": [
+          { "id": "a1", "text": "Helium", "isCorrect": false },
+          { "id": "a2", "text": "Oxygen", "isCorrect": false },
+          { "id": "a3", "text": "Carbon", "isCorrect": false },
+          { "id": "a4", "text": "Hydrogen", "isCorrect": true }
+        ]
+      }
+    ]
   },
   {
     "id": "bio-1",
     "categorySlug": "biology",
     "title": "Human Anatomy",
     "description": "Body structure, organs, circulatory systems, and the nervous system.",
-    "questionCount": 20
+    "questionCount": 2,
+    "questions": [
+      {
+        "id": "bio-1-q1",
+        "text": "What is the largest organ of the human body?",
+        "points": 100,
+        "difficulty": "Easy",
+        "answers": [
+          { "id": "a1", "text": "Heart", "isCorrect": false },
+          { "id": "a2", "text": "Liver", "isCorrect": false },
+          { "id": "a3", "text": "Skin", "isCorrect": true },
+          { "id": "a4", "text": "Lungs", "isCorrect": false }
+        ]
+      },
+      {
+        "id": "bio-1-q2",
+        "text": "How many chambers does the human heart have?",
+        "points": 200,
+        "difficulty": "Medium",
+        "answers": [
+          { "id": "a1", "text": "Two", "isCorrect": false },
+          { "id": "a2", "text": "Three", "isCorrect": false },
+          { "id": "a3", "text": "Four", "isCorrect": true },
+          { "id": "a4", "text": "Five", "isCorrect": false }
+        ]
+      }
+    ]
   },
   {
     "id": "bio-2",
     "categorySlug": "biology",
     "title": "Cell Biology",
     "description": "Mitochondria, DNA, RNA, and cell division processes.",
-    "questionCount": 10
+    "questionCount": 2,
+    "questions": [
+      {
+        "id": "bio-2-q1",
+        "text": "Which organelle is known as the powerhouse of the cell?",
+        "points": 100,
+        "difficulty": "Easy",
+        "answers": [
+          { "id": "a1", "text": "Nucleus", "isCorrect": false },
+          { "id": "a2", "text": "Mitochondria", "isCorrect": true },
+          { "id": "a3", "text": "Ribosome", "isCorrect": false },
+          { "id": "a4", "text": "Endoplasmic Reticulum", "isCorrect": false }
+        ]
+      },
+      {
+        "id": "bio-2-q2",
+        "text": "In DNA, Adenine (A) always pairs with which base?",
+        "points": 200,
+        "difficulty": "Medium",
+        "answers": [
+          { "id": "a1", "text": "Cytosine (C)", "isCorrect": false },
+          { "id": "a2", "text": "Guanine (G)", "isCorrect": false },
+          { "id": "a3", "text": "Thymine (T)", "isCorrect": true },
+          { "id": "a4", "text": "Uracil (U)", "isCorrect": false }
+        ]
+      }
+    ]
   },
   {
     "id": "gen-1",
     "categorySlug": "general",
     "title": "World Geography",
     "description": "Capitals, flags, mountains, and oceans. General knowledge.",
-    "questionCount": 25
+    "questionCount": 2,
+    "questions": [
+      {
+        "id": "gen-1-q1",
+        "text": "What is the capital of Japan?",
+        "points": 100,
+        "difficulty": "Easy",
+        "answers": [
+          { "id": "a1", "text": "Seoul", "isCorrect": false },
+          { "id": "a2", "text": "Beijing", "isCorrect": false },
+          { "id": "a3", "text": "Tokyo", "isCorrect": true },
+          { "id": "a4", "text": "Kyoto", "isCorrect": false }
+        ]
+      },
+      {
+        "id": "gen-1-q2",
+        "text": "Which is the largest ocean on Earth?",
+        "points": 100,
+        "difficulty": "Easy",
+        "answers": [
+          { "id": "a1", "text": "Atlantic Ocean", "isCorrect": false },
+          { "id": "a2", "text": "Indian Ocean", "isCorrect": false },
+          { "id": "a3", "text": "Pacific Ocean", "isCorrect": true },
+          { "id": "a4", "text": "Arctic Ocean", "isCorrect": false }
+        ]
+      }
+    ]
   }
 ]
