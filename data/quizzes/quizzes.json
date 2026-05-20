@@ -1,0 +1,72 @@
+[
+  {
+    "id": "sci-1",
+    "categorySlug": "science",
+    "title": "Fundamentals of Physics",
+    "description": "Test your knowledge of the basic laws of physics, mechanics, and thermodynamics.",
+    "questionCount": 10
+  },
+  {
+    "id": "sci-2",
+    "categorySlug": "science",
+    "title": "Space and the Universe",
+    "description": "What do you know about black holes, galaxies, the solar system, and the Big Bang?",
+    "questionCount": 15
+  },
+  {
+    "id": "sci-3",
+    "categorySlug": "science",
+    "title": "Quantum Mechanics for Beginners",
+    "description": "Schrödinger's cat, entanglement, and basic concepts of the microworld.",
+    "questionCount": 8
+  },
+  {
+    "id": "math-1",
+    "categorySlug": "math",
+    "title": "Algebra: Level 1",
+    "description": "Basic equations, fractions, percentages, and simple mathematical operations.",
+    "questionCount": 12
+  },
+  {
+    "id": "math-2",
+    "categorySlug": "math",
+    "title": "Higher Mathematics",
+    "description": "Integrals, derivatives, and matrices. Only for true experts.",
+    "questionCount": 20
+  },
+  {
+    "id": "math-3",
+    "categorySlug": "math",
+    "title": "Logic and Probability",
+    "description": "Problems in logic, combinatorics, and probability theory.",
+    "questionCount": 10
+  },
+  {
+    "id": "chem-1",
+    "categorySlug": "chemistry",
+    "title": "The Periodic Table",
+    "description": "How well do you navigate chemical elements and their properties?",
+    "questionCount": 15
+  },
+  {
+    "id": "bio-1",
+    "categorySlug": "biology",
+    "title": "Human Anatomy",
+    "description": "Body structure, organs, circulatory systems, and the nervous system.",
+    "questionCount": 20
+  },
+  {
+    "id": "bio-2",
+    "categorySlug": "biology",
+    "title": "Cell Biology",
+    "description": "Mitochondria, DNA, RNA, and cell division processes.",
+    "questionCount": 10
+  },
+  {
+    "id": "gen-1",
+    "categorySlug": "general",
+    "title": "World Geography",
+    "description": "Capitals, flags, mountains, and oceans. General knowledge.",
+    "questionCount": 25
+  }
+]

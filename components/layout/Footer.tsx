@@ -1,6 +1,6 @@
 export const Footer = () => {
   return (
-    <footer className="container py-6">
+    <footer className="container py-6 bottom-0">
       <div className="flex justify-between">
         {/* Name tag */}
         <h5>Copyright © 2025 StuQuiz</h5>
