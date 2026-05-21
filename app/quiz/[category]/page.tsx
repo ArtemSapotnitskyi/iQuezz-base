@@ -2,6 +2,7 @@ import fs from "fs/promises";
 import path from "path";
 import { QuizData } from "@/data/quizzes/quiz";
 import { QuizWorkspace } from "@/features/quiz_category/components/QuizWorkspace";
+import Link from "next/link";
 
 export default async function QuizCategoryPage({
   params,
@@ -31,10 +32,18 @@ export default async function QuizCategoryPage({
   }
 
   return (
-    <div className="container mx-auto py-10 px-4">
-      <h1 className="text-4xl font-bold capitalize text-white mb-8">
-        {category} Quizzes
-      </h1>
+    <div className="container mx-auto py-10">
+      <div className="flex justify-between items-center">
+        <h1 className="text-4xl font-bold capitalize text-white mb-8">
+          {category} Quizzes
+        </h1>
+        <button className="text-xl font-bold bg-[#7C3AED] py-2 px-3 rounded-xl">
+          <Link href={"/upload"} className="flex items-center gap-1.5 ">
+            {" "}
+            <span className="text-3xl font-medium">+</span>Upload New Quiz
+          </Link>
+        </button>
+      </div>
 
       <QuizWorkspace quizzes={filteredQuizzes} />
     </div>

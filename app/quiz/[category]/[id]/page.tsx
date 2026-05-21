@@ -2,7 +2,7 @@
 import fs from "fs/promises";
 import path from "path";
 import { QuizData } from "@/data/quizzes/quiz";
-import { QuizPlayer } from "@/features/quiz_play/QuizPlayer";
+import { QuizPlayer } from "@/features/quiz_play/components/QuizPlayer";
 
 export default async function PlayQuizPage({
   params,

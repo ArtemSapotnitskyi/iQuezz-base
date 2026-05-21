@@ -11,99 +11,84 @@ interface QuizPlayerProps {
 }
 
 export const QuizPlayer = ({ quiz, category }: QuizPlayerProps) => {
-  // Стейти для логіки гри
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
+  const alphabet = ["A", "B", "C", "D"];
+  const [questionIndex, setQuestionIndex] = useState(0);
   const [score, setScore] = useState(0);
+  const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
   const [lives, setLives] = useState(3);
-  const [timeLeft, setTimeLeft] = useState(30); // 30 секунд на питання
+  const [timeLeft, setTimeLeft] = useState(30);
   const [isFinished, setIsFinished] = useState(false);
 
-  // Для безпеки: якщо питань ще немає у JSON
   const questions = quiz.questions || [];
-  const currentQuestion = questions[currentIndex];
-
-  // Логіка таймера
+  const currentQuestion = questions[questionIndex];
   useEffect(() => {
     if (isFinished || questions.length === 0) return;
 
+    if (timeLeft <= 0) {
+      setIsFinished(true);
+      return;
+    }
+
     const timer = setInterval(() => {
-      setTimeLeft((prev) => {
-        if (prev <= 1) {
-          handleNextQuestion(); // Якщо час вийшов, йдемо далі
-          return 30; // Скидаємо таймер
-        }
-        return prev - 1;
-      });
+      setTimeLeft((prev) => prev - 1);
     }, 1000);
 
     return () => clearInterval(timer);
-  }, [currentIndex, isFinished, questions.length]);
+  }, [timeLeft, isFinished, questions.length]);
 
-  // Функція переходу до наступного питання
+  useEffect(() => {
+    if (lives <= 0) {
+      setIsFinished(true);
+    }
+  }, [lives]);
+
+  const progressPercentage =
+    questions.length > 0
+      ? Math.round(((questionIndex + 1) / questions.length) * 100)
+      : 0;
+
   const handleNextQuestion = () => {
-    // Якщо користувач вибрав правильну відповідь, додаємо бали
-    if (selectedAnswer && currentQuestion) {
-      const isCorrect = currentQuestion.answers.find(
-        (a) => a.id === selectedAnswer,
-      )?.isCorrect;
+    const clickedAnswer = currentQuestion.answers.find(
+      (answer) => answer.id === selectedAnswer,
+    );
 
-      if (isCorrect) setScore((prev) => prev + currentQuestion.points);
-      else setLives((prev) => Math.max(0, prev - 1)); // Віднімаємо життя
-    }
-
-    if (currentIndex < questions.length - 1) {
-      setCurrentIndex((prev) => prev + 1);
-      setSelectedAnswer(null); // Скидаємо вибір
-      setTimeLeft(30); // Скидаємо таймер
+    if (clickedAnswer?.isCorrect) {
+      setScore((prevScore) => prevScore + currentQuestion.points);
     } else {
-      setIsFinished(true); // Кінець квізу
+      setLives((prevLives) => Math.max(0, prevLives - 1));
     }
-  };
 
-  const handleSkipQuestion = () => {
-    // Опціонально: віднімаємо життя за скіп
-    // setLives((prev) => Math.max(0, prev - 1));
+    setSelectedAnswer(null);
+    setTimeLeft(30);
 
-    if (currentIndex < questions.length - 1) {
-      setCurrentIndex((prev) => prev + 1);
-      setSelectedAnswer(null);
-      setTimeLeft(30);
+    if (questionIndex < questions.length - 1) {
+      setQuestionIndex((prevIndex) => prevIndex + 1);
     } else {
       setIsFinished(true);
     }
   };
 
-  // Розрахунок прогресу для смужки
-  const progressPercentage =
-    questions.length > 0
-      ? Math.round(((currentIndex + 1) / questions.length) * 100)
-      : 0;
+  const handleSkipQuestion = () => {
+    setSelectedAnswer(null);
+    setTimeLeft(30);
 
-  // Екран завершення
-  if (isFinished || questions.length === 0) {
+    if (questionIndex < questions.length - 1) {
+      setQuestionIndex((prevIndex) => prevIndex + 1);
+    } else {
+      setIsFinished(true);
+    }
+  };
+
+  if (questions.length === 0) {
     return (
       <div className="container mx-auto py-20 px-4 text-center text-white">
-        <h2 className="text-4xl font-bold mb-4">Quiz Completed!</h2>
-        <p className="text-xl text-gray-400 mb-8">
-          Your final score:{" "}
-          <span className="text-purple-500 font-bold">{score}</span>
-        </p>
-        <Link
-          href={`/quiz/${category}`}
-          className="px-8 py-4 bg-purple-600 rounded-xl font-bold hover:bg-purple-500 transition-colors"
-        >
-          Back to Quizzes
-        </Link>
+        <h2 className="text-2xl font-bold">No questions available</h2>
       </div>
     );
   }
 
-  // Букви для варіантів відповідей (A, B, C, D)
-  const alphabet = ["A", "B", "C", "D"];
-
   return (
-    <div className="container mx-auto text-white p-4 font-sans">
+    <div className="container relative mx-auto text-white p-4 font-sans">
       <header className="max-w-7xl mx-auto flex items-center justify-between mb-8">
         <Link
           href={`/quiz/${category}`}
@@ -115,6 +100,9 @@ export const QuizPlayer = ({ quiz, category }: QuizPlayerProps) => {
         <div className="w-10"></div>
       </header>
 
+      <div className="absolute top-0 -left-[350px] w-[620px] h-[620px] bg-purple-600/35 rounded-full blur-[120px] pointer-events-none -z-10"></div>
+      <div className="absolute -bottom-[320px] -right-[320px] w-[620px] h-[620px] bg-orange-500/20 rounded-full blur-[120px] pointer-events-none -z-10"></div>
+
       {/* Main Content */}
       <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-8">
         {/* Left path */}
@@ -123,7 +111,7 @@ export const QuizPlayer = ({ quiz, category }: QuizPlayerProps) => {
           <div className="w-full">
             <div className="flex justify-between text-sm font-medium mb-2">
               <span className="text-gray-400">
-                Question {currentIndex + 1} of {questions.length}
+                Question {questionIndex + 1} of {questions.length}
               </span>
               <span className="text-gray-400">
                 {progressPercentage}% Complete
@@ -138,23 +126,23 @@ export const QuizPlayer = ({ quiz, category }: QuizPlayerProps) => {
           </div>
 
           {/* Question place */}
-          <div className="w-full border-0 border-white/10 bg-[27272A]/20 rounded-xl p-6">
+          <div className="w-full border-1 border-white/25 bg-[#27272A]/60 rounded-xl p-6">
             <div className="flex justify-between items-center mb-6">
               <span className="px-3 py-1 bg-purple-500 text-white text-xs font-bold rounded-full">
-                {currentQuestion.points} points
+                {currentQuestion?.points} points
               </span>
               <div
-                className={`flex items-center gap-2 font-bold ${timeLeft <= 10 ? "text-red-500" : "text-purple-400"}`}
+                className={`flex items-center gap-2 font-bold ${timeLeft <= 10 ? "text-red-500" : ""}`}
               >
                 <Timer size={18} />
                 <span>00:{timeLeft < 10 ? `0${timeLeft}` : timeLeft}</span>
               </div>
               <span className="px-3 py-1 bg-gray-800 text-gray-300 text-xs font-medium rounded-full">
-                {currentQuestion.difficulty}
+                {currentQuestion?.difficulty}
               </span>
             </div>
             <h2 className="text-xl md:text-2xl font-bold leading-relaxed">
-              {currentQuestion.text}
+              {currentQuestion?.text}
             </h2>
           </div>
 
@@ -166,17 +154,18 @@ export const QuizPlayer = ({ quiz, category }: QuizPlayerProps) => {
                 <button
                   key={answer.id}
                   onClick={() => setSelectedAnswer(answer.id)}
-                  className={`flex items-center gap-4 p-4 border rounded-xl transition-all text-left group
-                    ${
-                      isSelected
-                        ? "border-purple-500 bg-purple-500/10"
-                        : "border-white/10 bg-[27272A]/20 hover:border-purple-500/50"
-                    }`}
+                  className={`flex items-center gap-4 p-4 border rounded-xl transition-all text-left group ${
+                    isSelected
+                      ? "border-purple-500 bg-purple-500/20"
+                      : "border-white/25 bg-[#27272A]/60 hover:border-purple-500/50"
+                  }`}
                 >
                   <div
-                    className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold transition-colors
-                    ${isSelected ? "bg-purple-500 text-white" : "bg-gray-800 text-gray-400 group-hover:text-purple-400"}
-                  `}
+                    className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold transition-colors ${
+                      isSelected
+                        ? "bg-purple-500 text-white"
+                        : "bg-gray-800 text-gray-400 group-hover:text-purple-400"
+                    }`}
                   >
                     {alphabet[index]}
                   </div>
@@ -189,7 +178,7 @@ export const QuizPlayer = ({ quiz, category }: QuizPlayerProps) => {
           {/* Control Buttons */}
           <div className="flex justify-between items-center mt-6">
             <button
-              onClick={handleSkipQuestion} // <-- Зміна тут
+              onClick={handleSkipQuestion}
               className="flex items-center gap-2 px-4 py-2 border border-white/10 rounded-xl text-[#717171] hover:text-white transition-colors font-medium"
             >
               <Flag size={18} />
@@ -197,12 +186,14 @@ export const QuizPlayer = ({ quiz, category }: QuizPlayerProps) => {
             </button>
             <button
               onClick={handleNextQuestion}
-              disabled={!selectedAnswer} // Вимикаємо кнопку, якщо відповідь не обрана
-              className={`flex items-center gap-2 px-6 py-3 rounded-xl text-white font-medium transition-colors
-                ${selectedAnswer ? "bg-purple-600 hover:bg-purple-500" : "bg-gray-800 cursor-not-allowed opacity-50"}
-              `}
+              disabled={!selectedAnswer}
+              className={`flex items-center gap-2 px-6 py-3 rounded-xl text-white font-medium transition-colors ${
+                selectedAnswer
+                  ? "bg-purple-600 hover:bg-purple-500 cursor-pointer"
+                  : "bg-gray-800 cursor-not-allowed opacity-50"
+              }`}
             >
-              {currentIndex === questions.length - 1
+              {questionIndex === questions.length - 1
                 ? "Finish Quiz"
                 : "Next Question"}
               <ChevronRight size={18} />
@@ -230,7 +221,6 @@ export const QuizPlayer = ({ quiz, category }: QuizPlayerProps) => {
                   Lives
                 </div>
                 <div className="flex justify-center gap-2 text-red-500">
-                  {/* Малюємо кількість сердечок залежно від стейту */}
                   {[...Array(3)].map((_, i) => (
                     <Heart
                       key={i}
@@ -248,13 +238,34 @@ export const QuizPlayer = ({ quiz, category }: QuizPlayerProps) => {
                   Progress
                 </div>
                 <div className="text-white text-xl font-bold">
-                  {currentIndex + 1}/{questions.length}
+                  {questionIndex + 1}/{questions.length}
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+
+      {/* Modal window */}
+      {isFinished && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4">
+          <div className="bg-[#151515] border border-white/10 rounded-2xl p-10 max-w-md w-full text-center shadow-2xl relative">
+            <h2 className="text-4xl font-bold mb-4 text-white">
+              Quiz Completed!
+            </h2>
+            <p className="text-xl text-gray-400 mb-8">
+              Your final score:{" "}
+              <span className="text-purple-500 font-bold">{score}</span>
+            </p>
+            <Link
+              href={`/quiz/${category}`}
+              className="inline-block px-8 py-4 bg-purple-600 rounded-xl font-bold text-white hover:bg-purple-500 transition-colors w-full"
+            >
+              Back to Quizzes
+            </Link>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
